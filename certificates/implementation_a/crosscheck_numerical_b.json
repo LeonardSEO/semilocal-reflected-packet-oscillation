@@ -1,0 +1,105 @@
+{
+  "implementation_A": "numerical_a physical B-spline grids at N=12,14,16; N=16 is the primary comparison",
+  "implementation_B": "certificates/implementation_b/explicit_formula_b_output.json",
+  "method_independence": "A uses the physical nonuniform B-spline convolution; B uses Fourier inversion of the sinc-product. Neither method was changed for this comparison.",
+  "budget_status": "All differences fall inside the sum of A's analytic omitted-support tail budget and B's stated quadrature/tail budget. A uses nondirected Decimal arithmetic and B's QUADPACK estimate is not an interval certificate, so this is a diagnostic agreement, not a load-bearing proof.",
+  "comparisons": [
+    {
+      "y": "1.25",
+      "A_primary_cutoff_N": 16,
+      "A_I_center": "-0.0010060420233752208350943477363198823268381",
+      "A_I_tail_low": "-0.0011130678387534533577725425215342647525599",
+      "A_I_tail_high": "-0.00089901622828282396734373811399725842292910",
+      "A_tracked_tail_budget": "0.0001070258153782325226781947852143824257218",
+      "B_I_direct": "-0.0010060420238880741762964137589788418",
+      "B_stated_error_budget": "3.6868104792280646638958657964727063E-12",
+      "absolute_difference": "5.128533412020660226589594731619E-13",
+      "combined_stated_budget": "0.0001070258190650430019062594491102482221945063",
+      "difference_within_combined_budget": true,
+      "stated_intervals_overlap": true,
+      "A_prime_power_count": 15,
+      "B_prime_power_count": 15,
+      "prime_power_counts_match": true,
+      "B_direct_minus_explicit": "8.1119727965676351495580775423077145e-14",
+      "A_cutoff_refinement": {
+        "N12": {
+          "I_center": "-0.0010060418927046309373774223833362963517228",
+          "absolute_difference_from_B": "1.311834432389189913756425454482772E-10"
+        },
+        "N14": {
+          "I_center": "-0.0010060420156887124888712542682967515637495",
+          "absolute_difference_from_B": "8.1993616874251594906820902362505E-12"
+        },
+        "N16": {
+          "I_center": "-0.0010060420233752208350943477363198823268381",
+          "absolute_difference_from_B": "5.128533412020660226589594731619E-13"
+        }
+      }
+    },
+    {
+      "y": "1.75",
+      "A_primary_cutoff_N": 16,
+      "A_I_center": "0.0022236319601983496140924719837866576998362",
+      "A_I_tail_low": "0.0020398254768470771655506100202970851492782",
+      "A_I_tail_high": "0.0024074381361444227533336745468440615141911",
+      "A_tracked_tail_budget": "0.0001838064833512724485418619634895725505580",
+      "B_I_direct": "0.0022236319519442255762755890214599761",
+      "B_stated_error_budget": "5.9339601034227414974042207688343028E-12",
+      "absolute_difference": "8.2541240378168829623266815998362E-12",
+      "combined_stated_budget": "0.0001838064892852325519646034608937933193923028",
+      "difference_within_combined_budget": true,
+      "stated_intervals_overlap": true,
+      "A_prime_power_count": 26,
+      "B_prime_power_count": 26,
+      "prime_power_counts_match": true,
+      "B_direct_minus_explicit": "3.948145279770518157001646566886452e-14",
+      "A_cutoff_refinement": {
+        "N12": {
+          "I_center": "0.0022236340648652177263533328993166181853660",
+          "absolute_difference_from_B": "2.1129209921500777438778566420853660E-9"
+        },
+        "N14": {
+          "I_center": "0.0022236320840022785665880411435244002202448",
+          "absolute_difference_from_B": "1.320580529903124521220644241202448E-10"
+        },
+        "N16": {
+          "I_center": "0.0022236319601983496140924719837866576998362",
+          "absolute_difference_from_B": "8.2541240378168829623266815998362E-12"
+        }
+      }
+    },
+    {
+      "y": "2.25",
+      "A_primary_cutoff_N": 16,
+      "A_I_center": "0.0026851587427638385526910453590593051710226",
+      "A_I_tail_low": "0.0023845748629688822640189756013230866512881",
+      "A_I_tail_high": "0.0029857421310536154883850539049011544069579",
+      "A_tracked_tail_budget": "0.0003005838797949562886720697577362185197345",
+      "B_I_direct": "0.0026851587295304726010500708198838672",
+      "B_stated_error_budget": "9.6239287198468014476033827057522802E-12",
+      "absolute_difference": "1.32333659516409745391754379710226E-11",
+      "combined_stated_budget": "0.0003005838894188850085188712053396012254867802",
+      "difference_within_combined_budget": true,
+      "stated_intervals_overlap": true,
+      "A_prime_power_count": 50,
+      "B_prime_power_count": 50,
+      "prime_power_counts_match": true,
+      "B_direct_minus_explicit": "2.425821272019033037178998022403422e-15",
+      "A_cutoff_refinement": {
+        "N12": {
+          "I_center": "0.0026851621172293802257160120613910353552120",
+          "absolute_difference_from_B": "3.3876989076246659412415071681552120E-9"
+        },
+        "N14": {
+          "I_center": "0.0026851589412618058346859985309012950641905",
+          "absolute_difference_from_B": "2.117313332336359277110174278641905E-10"
+        },
+        "N16": {
+          "I_center": "0.0026851587427638385526910453590593051710226",
+          "absolute_difference_from_B": "1.32333659516409745391754379710226E-11"
+        }
+      }
+    }
+  ],
+  "finite_certificate_status": "The separate exact-rational I_h(1/2) certificate remains finite and explicitly non-load-bearing for asymptotics."
+}

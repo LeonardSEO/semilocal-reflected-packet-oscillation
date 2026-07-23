@@ -1,0 +1,18 @@
+Semilocal Reflected-Packet Oscillation
+Version 1.0.0, 23 July 2026
+
+This repository is a standalone research and reproducibility artifact for
+the fixed-packet reflected-interaction theorem.
+
+The source research files from which this repository was assembled did not
+contain an explicit licensing policy. Accordingly, this repository does not
+add an open-source license or grant permissions that were not present in the
+source material. No LICENSE file is intentionally supplied.
+
+External mathematical sources are cited in paper/main.tex and in the
+research notes. Their copyrights and licensing terms remain with their
+respective authors and publishers. No external paper is redistributed here.
+
+The numerical outputs are diagnostics. They are not part of the
+load-bearing analytic proof and do not constitute a proof of the Riemann
+hypothesis.

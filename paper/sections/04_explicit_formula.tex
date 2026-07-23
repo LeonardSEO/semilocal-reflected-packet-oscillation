@@ -1,0 +1,159 @@
+\section{Canonical transform and exact zero expansion}
+\label{sec:explicit}
+
+\subsection{The base-1 extension}
+
+The uncut Mellin transform of \(dE\) is not defined in a right half-plane,
+because \(dE=-dx\) on \((0,1)\).  Introduce only for the transform
+\[
+J_h(t)=
+-\int_{[1,\infty)}
+x^{-1/2}K_h(t-\log x)\,dE(x).
+\]
+If
+\[
+E_0(x)=\psi(x)-x,\qquad
+E_1(x)=\psi(x)-(x-1)\quad(x\ge1),
+\]
+then \(E_0(1)=-1\), \(E_1(1)=0\), and distributionally
+\[
+d(\mathbf1_{[1,\infty)}E_0)
+=\mathbf1_{[1,\infty)}dE-\delta_1,
+\]
+whereas
+\[
+d(\mathbf1_{[1,\infty)}E_1)
+=\mathbf1_{[1,\infty)}dE.
+\]
+Thus \(J_h\) uses the endpoint-normalized primitive \(E_1\) and contains no
+spurious \(K_h(t)\) boundary term.  It satisfies
+\[
+J_h(t)=0\quad(t\le-1),\qquad
+J_h(t)=\Ih(t/2)\quad(t>1).
+\]
+
+\subsection{Bilateral Laplace transform}
+
+For \(\Re s>1/2\), absolute Euler-product convergence and Tonelli's theorem
+give
+\begin{align}
+\mathcal B_h(s)
+&=
+\int_\R J_h(t)e^{-st}\,dt
+\notag\\
+&=
+\Lh(s)
+\left\{
+\frac{\zeta'}{\zeta}\left(s+\frac12\right)
++\frac{1}{s-\frac12}
+\right\}.
+\label{eq:B-transform}
+\end{align}
+At \(s=1/2\),
+\[
+\frac{\zeta'}{\zeta}\left(s+\frac12\right)
+=-\frac{1}{s-1/2}+\gamma_E+O(s-1/2),
+\]
+so the apparent pole is removable and
+\[
+\mathcal B_h(1/2)=\gamma_E\Lh(1/2)=\gamma_E M_h^2.
+\]
+The remaining poles are
+\[
+s=\rho-\frac12
+\]
+for nontrivial zeros, with residue
+\[
+m_\rho\Lh\left(\rho-\frac12\right),
+\]
+and
+\[
+s=-2n-\frac12,\qquad n\ge1,
+\]
+for trivial zeros, with residue
+\[
+\Lh\left(-2n-\frac12\right).
+\]
+A multiple zero changes the residue by its multiplicity; it does not create
+a derivative term.
+
+\subsection{Contour displacement}
+
+For \(c>1/2\), Fourier inversion on the line \(\Re s=c\) gives
+\[
+J_h(t)
+=
+\frac{1}{2\pi i}\int_{c-i\infty}^{c+i\infty}
+e^{st}\Lh(s)
+\left\{
+\frac{\zeta'}{\zeta}\left(s+\frac12\right)
++\frac{1}{s-\frac12}
+\right\}ds.
+\]
+The integral is absolutely convergent because, uniformly in every fixed
+vertical strip,
+\[
+\Lh(\sigma+i\tau)=O_N((1+|\tau|)^{-N})
+\]
+for every \(N\).  Choose heights avoiding zero ordinates by
+\(\gg1/\log T\); on those horizontal segments
+\(\zeta'/\zeta=O(\log^2T)\), so the horizontal integrals vanish.
+
+Move the left side to \(\Re s=-2N-1\).  Repeated integration by parts and
+\(\supp K_h=[-1,1]\) give, for \(M\ge3\),
+\[
+|\Lh(-2N-1+i\tau)|
+\le
+C_Me^{2N+1}(1+N)^M(1+|\tau|)^{-M}.
+\]
+The remaining vertical integral is consequently
+\[
+O_{h,M}\left(
+e^{-(2N+1)(t-1)}(1+N)^M\log(N+2)
+\right),
+\]
+which tends to zero when \(t>1\).  Summing the crossed residues yields
+\begin{align}
+J_h(t)
+={}&
+\sum_\rho m_\rho
+\Lh\left(\rho-\frac12\right)
+e^{(\rho-1/2)t}
+\notag\\
+&+
+\sum_{n=1}^{\infty}
+\Lh\left(-2n-\frac12\right)e^{(-2n-1/2)t}.
+\label{eq:J-explicit}
+\end{align}
+Since \(\Lh\) is even, \(t=2y\) proves
+\eqref{eq:I-expansion}.
+
+The trivial-zero sum is absolutely convergent for \(t>1\).  The zero-counting
+bound \(N_\zeta(T)=O(T\log T)\), combined with rapid vertical decay of
+\(\Lh\), proves absolute and locally uniform convergence of the nontrivial
+zero sum after any fixed number of real derivatives.
+
+\subsection{Archimedean cancellation}
+
+For the reflected cross correlation, \(C(0)=0\), \(C(r)=0\) for \(r\ge0\),
+and \(C(-r)=K_h(2y-r)\).  Equation~\eqref{eq:real-place} gives
+\[
+A_h^\infty(y)
+=-\int_0^\infty
+\frac{e^{r/2}}{e^r-e^{-r}}K_h(2y-r)\,dr.
+\]
+Using
+\[
+\frac{e^{r/2}}{e^r-e^{-r}}
+=\sum_{n=0}^{\infty}e^{-(2n+1/2)r},
+\]
+Tonelli's theorem and \(u=2y-r\) give
+\[
+A_h^\infty(y)
+=-\sum_{n=0}^{\infty}
+\Lh\left(2n+\frac12\right)e^{-(4n+1)y}.
+\]
+The \(n=0\) term is \(-M_h^2e^{-y}\); the terms \(n\ge1\) cancel the
+complete trivial-zero series in \eqref{eq:I-expansion}.  Combining with
+\eqref{eq:Q-decomposition} proves the zero-only formulas
+\eqref{eq:zero-only} and \eqref{eq:delta-zero-only}.

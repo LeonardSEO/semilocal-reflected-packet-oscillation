@@ -1,0 +1,103 @@
+\section{Polarization and exact prime--pole interaction}
+\label{sec:interaction}
+
+For \(y>1/2\), the two translates have disjoint support.  Hermitian
+polarization, with the first form variable antilinear, gives
+\begin{align*}
+\qform[h_y^+]
+&=\frac12\{\qform[h_y^{\mathrm R}]+\qform[h_y^{\mathrm L}]\}
++\Re\qform(h_y^{\mathrm R},h_y^{\mathrm L}),\\
+\qform[h_y^-]
+&=\frac12\{\qform[h_y^{\mathrm R}]+\qform[h_y^{\mathrm L}]\}
+-\Re\qform(h_y^{\mathrm R},h_y^{\mathrm L}).
+\end{align*}
+Inversion symmetry makes the cross term real.  Thus
+\begin{equation}
+\boxed{\Delta_h(y)=2\qform(h_y^{\mathrm R},h_y^{\mathrm L}).}
+\label{eq:polarization}
+\end{equation}
+
+Let
+\[
+M_h=\widehat h(i/2)=\widehat h(-i/2)
+=\int_\R h(x)e^{x/2}\,dx>0.
+\]
+The two pole terms in \eqref{eq:preform} contribute exactly
+\begin{equation}
+M_h^2(e^y+e^{-y}).
+\label{eq:pole-cross}
+\end{equation}
+The prime-power cross term is
+\begin{equation}
+-
+\sum_{p,m\ge1}
+\frac{\log p}{p^{m/2}}
+K_h(2y-m\log p).
+\label{eq:prime-cross}
+\end{equation}
+Because \(K_h\) is supported on \([-1,1]\), only
+\[
+2y-1<m\log p<2y+1
+\]
+contributes.  Equality is zero because \(K_h(\pm1)=0\).  This is a support
+fact, not an endpoint half-weight convention.
+
+Define the full Chebyshev measure
+\[
+d\Psi=\sum_{n\ge2}\Lambda(n)\delta_n,\qquad
+\psi(X)=\sum_{n\le X}\Lambda(n),
+\]
+and
+\[
+dE=d\Psi-dx.
+\]
+This is the prime-power error distribution associated with
+\(\psi(X)-X\), not the primes-only distribution associated with
+\(\theta(X)-X\).
+
+The continuous term can be evaluated without approximation:
+\begin{align}
+\int_0^\infty
+x^{-1/2}K_h(2y-\log x)\,dx
+&=
+e^y\int_{-1}^{1}K_h(r)e^{-r/2}\,dr
+\notag\\
+&=e^yM_h^2.
+\label{eq:continuous-main}
+\end{align}
+Therefore
+\begin{align}
+\Ih(y)
+&=
+e^yM_h^2
+-
+\sum_{n\ge2}
+\frac{\Lambda(n)}{\sqrt n}
+K_h(2y-\log n),
+\label{eq:I-physical}
+\end{align}
+and the exact cross interaction is
+\begin{equation}
+\qform(h_y^{\mathrm R},h_y^{\mathrm L})
+=
+A_h^\infty(y)+e^{-y}M_h^2+\Ih(y),
+\label{eq:Q-decomposition}
+\end{equation}
+where
+\[
+A_h^\infty(y)
+=
+\frac{1}{2\pi}
+\int_\R m_\infty(t)e^{2iyt}|\widehat h(t)|^2\,dt.
+\]
+Equation~\eqref{eq:Q-decomposition} is the exact prime--pole cancellation:
+the \(e^yM_h^2\) pole main term has been combined with the continuous part
+of \(dE\) before any estimate is made.
+
+For a packet realized inside
+\([-\log\lambda,\log\lambda]\), the geometric condition is
+\[
+y+\frac12\le\log\lambda.
+\]
+Every contributing prime power then automatically satisfies the inclusive
+semilocal cutoff \(p^m\le\lambda^2\).

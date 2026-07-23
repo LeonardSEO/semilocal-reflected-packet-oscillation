@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=30mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\qform}{\mathfrak q}
+\newcommand{\Ih}{\mathcal I_h}
+\newcommand{\Lh}{L_h}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Res}{\operatorname*{Res}}
+
+\title{\textbf{Reflected-Packet Interactions in the Semilocal Weil Form}\\
+\large An Exact Zero Expansion and Unconditional Infinite Oscillation}
+\author{LeonardSEO}
+\date{Version 1.0.0 --- 23 July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We freeze one explicit real, even, compactly supported smooth packet and
+compute the interaction of two widely separated reflected translates in the
+complete semilocal Weil preform.  The pole and all-prime-power sectors combine
+into a Stieltjes pairing against \(d\psi-dx\).  Its canonical bilateral
+Laplace transform is
+\[
+L_h(s)\left\{
+\frac{\zeta'}{\zeta}\left(s+\frac12\right)
++\frac{1}{s-\frac12}
+\right\}.
+\]
+A contour displacement gives an absolutely convergent expansion over all
+nontrivial and trivial zeros.  The archimedean term and the remaining pole
+term cancel the complete trivial-zero series, leaving a zero-only expansion
+for the full reflected cross interaction.  The packet coefficient vanishes
+exactly on the lattice \(4\pi i\Z\setminus\{0\}\).  Conrey's unconditional
+positive-proportion theorem therefore supplies infinitely many visible
+critical-line poles.  A Laplace-transform form of Landau's theorem then
+excludes either eventual sign.  Consequently both the arithmetic interaction
+and the even-minus-odd energy splitting take both strict signs arbitrarily
+far out.
+\end{abstract}
+
+\begin{center}
+\fbox{\begin{minipage}{0.91\textwidth}
+\textbf{Scope.} This is not a proof of the Riemann hypothesis.  It is a
+fixed-packet theorem.  It does not identify, approximate, or determine the
+parity of an actual semilocal ground state.  Numerical computations in the
+repository are diagnostics only and are not premises of the analytic proof.
+\end{minipage}}
+\end{center}
+
+\tableofcontents
+
+\input{sections/01_introduction}
+\input{sections/02_frozen_specification}
+\input{sections/03_prime_pole_interaction}
+\input{sections/04_explicit_formula}
+\input{sections/05_oscillation}
+\input{sections/06_numerical_diagnostics}
+\input{sections/07_scope_and_audit}
+
+\begin{thebibliography}{9}
+
+\bibitem{ConnesConsani2023}
+A.~Connes and C.~Consani,
+\emph{Spectral triples and \(\zeta\)-cycles},
+Enseign. Math. \textbf{69} (2023), 93--148.
+\href{https://doi.org/10.4171/LEM/1049}{doi:10.4171/LEM/1049}.
+
+\bibitem{CCM2025}
+A.~Connes, C.~Consani, and H.~Moscovici,
+\emph{Zeta Spectral Triples},
+arXiv:2511.22755 (2025).
+\href{https://arxiv.org/abs/2511.22755}{arXiv:2511.22755}.
+
+\bibitem{Conrey1989}
+J.~B. Conrey,
+\emph{More than two fifths of the zeros of the Riemann zeta function
+are on the critical line},
+J. Reine Angew. Math. \textbf{399} (1989), 1--26.
+\href{https://doi.org/10.1515/crll.1989.399.1}
+{doi:10.1515/crll.1989.399.1}.
+
+\end{thebibliography}
+
+\end{document}

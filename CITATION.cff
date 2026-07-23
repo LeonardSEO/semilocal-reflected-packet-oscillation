@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this fixed-packet theorem or its reproducibility code, cite this repository and the accompanying paper."
+title: "Semilocal Reflected-Packet Oscillation"
+type: software
+version: 1.0.0
+date-released: 2026-07-23
+authors:
+  - name: "LeonardSEO"
+repository-code: "https://github.com/LeonardSEO/semilocal-reflected-packet-oscillation"
+url: "https://github.com/LeonardSEO/semilocal-reflected-packet-oscillation"
+keywords:
+  - Weil explicit formula
+  - Riemann zeta function
+  - prime powers
+  - oscillation theorem
+  - reproducible mathematics
+abstract: >-
+  A standalone proof and reproducibility package for an exact zero expansion
+  and unconditional infinite sign changes of one fixed reflected-packet
+  interaction in the complete semilocal Weil preform. This is not a proof of
+  the Riemann hypothesis and does not determine actual ground-state parity.

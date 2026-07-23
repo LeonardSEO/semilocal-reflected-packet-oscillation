@@ -1,0 +1,130 @@
+\section{Visible zero coefficients and infinite oscillation}
+\label{sec:oscillation}
+
+\subsection{Coefficient visibility}
+
+From \eqref{eq:L-product}, the \(n\)-th factor vanishes precisely at
+\[
+w=\pi i\ell\,2^{n+1},\qquad \ell\in\Z\setminus\{0\}.
+\]
+The locally uniform nonvanishing of the tail away from factor zeros proves
+\eqref{eq:L-zero-set}.  Thus every off-critical-line zero is visible.  A
+critical-line zero is invisible only if its ordinate is in
+\[
+4\pi\Z\setminus\{0\}.
+\]
+
+Conrey's Theorem~1 in \cite{Conrey1989} proves that a positive proportion
+of all nontrivial zeros are simple and lie on the critical line.  Hence
+there are \(\gg T\log T\) distinct simple critical-line zeros below height
+\(T\).  The invisible lattice has only \(O(T)\) ordinates in that range,
+and a simple zero occupies at most one such ordinate.  It follows
+unconditionally that infinitely many critical-line zeros are visible for
+the frozen packet.
+
+\subsection{A Laplace-transform Landau lemma}
+
+\begin{lemma}[Landau]
+\label{lem:landau}
+Let \(T_0\ge0\), and let
+\(f:[T_0,\infty)\to[0,\infty)\) be locally integrable.  Suppose its Laplace
+integral converges on a nonempty right half-line, and define
+\[
+F(s)=\int_{T_0}^{\infty}f(t)e^{-st}\,dt,
+\]
+\[
+\sigma_c=
+\inf\left\{
+\sigma\in\R:
+\int_{T_0}^{\infty}f(t)e^{-\sigma t}\,dt<\infty
+\right\}.
+\]
+If \(\sigma_c\) is finite, then \(F\) is singular at the real point
+\(s=\sigma_c\).
+\end{lemma}
+
+\begin{proof}
+Assume that \(F\) is holomorphic near \(\sigma_c\).  Choose
+\(\sigma_1>\sigma_c\) and \(r>0\) so that
+\(\sigma_1-r<\sigma_c\) while the Taylor disk from \(\sigma_1\) to
+\(\sigma_1-r\) remains inside the union of this neighborhood and
+\(\Re s>\sigma_c\).  For a small \(\varepsilon>0\) with
+\(\sigma_1-\varepsilon>\sigma_c\), the inequality
+\(t^n\le C_{n,\varepsilon}e^{\varepsilon t}\) justifies differentiation:
+\[
+(-1)^nF^{(n)}(\sigma_1)
+=\int_{T_0}^{\infty}t^nf(t)e^{-\sigma_1t}\,dt\ge0.
+\]
+Taylor's theorem and monotone convergence give
+\begin{align*}
+F(\sigma_1-r)
+&=
+\sum_{n=0}^{\infty}
+\frac{(-r)^nF^{(n)}(\sigma_1)}{n!}\\
+&=
+\int_{T_0}^{\infty}
+f(t)e^{-\sigma_1t}
+\sum_{n=0}^{\infty}\frac{(rt)^n}{n!}\,dt\\
+&=
+\int_{T_0}^{\infty}
+f(t)e^{-(\sigma_1-r)t}\,dt<\infty,
+\end{align*}
+contradicting the definition of \(\sigma_c\).
+\end{proof}
+
+\subsection{Oscillation of the arithmetic interaction}
+
+The direct prime-power window gives the elementary bound
+\[
+|\Ih(t/2)|=O_h((1+t)e^{t/2}),\qquad t>1.
+\]
+Indeed, one may use
+\(\sum_{n\le X}\Lambda(n)\le X\log X\).  Thus the tail transform has a
+finite abscissa of convergence no greater than \(1/2\).
+
+At each visible critical-line zero \(\rho=1/2+i\gamma\), the meromorphic
+continuation \eqref{eq:B-transform} has a genuine pole at \(s=i\gamma\).
+Suppose \(\Ih(t/2)\) were eventually nonnegative.  Discarding the finite
+initial interval changes its transform by an entire function.  The visible
+pole rules out an abscissa below \(0\), while absolute convergence gives
+\[
+0\le\sigma_c\le\frac12.
+\]
+But \eqref{eq:B-transform} is holomorphic at every real point of this
+interval: the pole at \(1/2\) cancels, and
+\(\zeta(u)\ne0\) for real \(1/2\le u<1\).  Lemma~\ref{lem:landau} gives a
+contradiction.  Applying the same argument to \(-\Ih(t/2)\) excludes
+eventual nonpositivity.
+
+\subsection{Oscillation of the complete splitting}
+
+Put \(\mathcal Q_h(t)=\qform(h_{t/2}^{\mathrm R},
+h_{t/2}^{\mathrm L})\).  The zero-only formula gives
+\[
+\mathcal Q_h(t)=
+\sum_\rho a_\rho e^{(\rho-1/2)t},
+\qquad
+a_\rho=m_\rho\Lh\left(\rho-\frac12\right).
+\]
+For every \(T_0>1\),
+\[
+\int_{T_0}^{\infty}\mathcal Q_h(t)e^{-st}\,dt
+=
+\sum_\rho
+\frac{
+a_\rho e^{(\rho-1/2-s)T_0}
+}{
+s-(\rho-1/2)
+}.
+\]
+Rapid coefficient decay makes the right side normally convergent away
+from its displayed poles.  It has genuine nonreal poles at every visible
+critical zero and no real poles.  The same Landau argument, applied
+separately to \(\mathcal Q_h\) and to \(-\mathcal Q_h\), excludes either
+eventual sign.  Equation~\eqref{eq:polarization} transfers the conclusion to
+\(\Delta_h\).
+
+Both \(\Ih\) and \(\Delta_h\) are continuous.  Alternating positive and
+negative points can be chosen beyond increasing bounds, producing
+infinitely many disjoint sign-crossing intervals.  This does not assert
+that the intervening zeros are simple or transverse.

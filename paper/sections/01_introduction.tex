@@ -1,0 +1,108 @@
+\section{Introduction and main result}
+
+The Weil explicit formula balances four sectors: an archimedean
+distribution, two residual pole terms, the full prime-power measure, and a
+spectral sum over the nontrivial zeros.  We study a particularly rigid test:
+the interaction of two reflected translates of one fixed packet.  The
+purpose is arithmetic.  No spectral ground-state or variational assertion is
+made.
+
+Let \(h\in C_c^\infty(\R)\) be the packet constructed in
+Section~\ref{sec:packet}.  For \(y>1/2\), set
+\[
+h_y^{\mathrm R}(x)=h(x-y),\qquad
+h_y^{\mathrm L}(x)=h(x+y),
+\]
+and
+\[
+h_y^\pm=\frac{h_y^{\mathrm R}\pm h_y^{\mathrm L}}{\sqrt2}.
+\]
+The supports of \(h_y^{\mathrm R}\) and \(h_y^{\mathrm L}\) are disjoint, so
+both \(h_y^\pm\) are normalized.  The energy splitting is
+\[
+\Delta_h(y)=\qform[h_y^+]-\qform[h_y^-].
+\]
+
+Write
+\[
+K_h=h*h,\qquad
+\Lh(w)=\int_{-1}^{1}K_h(r)e^{wr}\,dr
+\]
+and define the all-prime-power error measure
+\[
+dE(x)=\sum_{n\ge2}\Lambda(n)\delta_n-dx.
+\]
+The centered arithmetic interaction is
+\[
+\Ih(y)=
+-\int_0^\infty x^{-1/2}K_h(2y-\log x)\,dE(x).
+\]
+
+\begin{theorem}[Exact expansion and unconditional oscillation]
+\label{thm:main}
+For every \(y>1/2\),
+\begin{align}
+\Ih(y)
+={}&
+\sum_{\rho}m_\rho
+\Lh\left(\rho-\frac12\right)e^{2(\rho-1/2)y}
+\notag\\
+&+
+\sum_{n=1}^{\infty}
+\Lh\left(2n+\frac12\right)e^{-(4n+1)y},
+\label{eq:I-expansion}
+\end{align}
+where \(\rho\) ranges over the distinct nontrivial zeros of \(\zeta\) and
+\(m_\rho\) is the multiplicity.  Both series converge absolutely, and the
+nontrivial-zero series may be differentiated term by term any fixed number
+of times locally uniformly in \(y\).
+
+The archimedean and residual pole terms cancel the second series exactly.
+Consequently
+\begin{equation}
+\qform(h_y^{\mathrm R},h_y^{\mathrm L})
+=
+\sum_\rho m_\rho
+\Lh\left(\rho-\frac12\right)e^{2(\rho-1/2)y},
+\label{eq:zero-only}
+\end{equation}
+and
+\begin{equation}
+\Delta_h(y)=
+2\sum_\rho m_\rho
+\Lh\left(\rho-\frac12\right)e^{2(\rho-1/2)y}.
+\label{eq:delta-zero-only}
+\end{equation}
+The coefficient at \(\rho\) is
+\[
+A_h(\rho)=m_\rho\Lh\left(\rho-\frac12\right),
+\]
+and it vanishes exactly if
+\[
+\rho=\frac12+4\pi i k,\qquad k\in\Z\setminus\{0\}.
+\]
+
+Unconditionally, for every \(Y>0\), there exist
+\(y_+,y_-,u_+,u_->Y\) such that
+\[
+\Ih(y_+)>0,\qquad \Ih(y_-)<0,
+\]
+and
+\[
+\Delta_h(u_+)>0,\qquad \Delta_h(u_-)<0.
+\]
+Thus each function has infinitely many sign-crossing intervals.
+\end{theorem}
+
+The sign convention has a direct but limited interpretation:
+\(\Delta_h(y)<0\) means that the even packet has lower energy than the odd
+packet at that separation, while \(\Delta_h(y)>0\) means the reverse.
+Theorem~\ref{thm:main} therefore proves that neither parity is eventually
+preferred for this one packet.
+
+The proof has four independent components.  First, exact polarization fixes
+the factor \(2\).  Second, the pole and prime-power main terms are combined
+before estimation.  Third, a contour displacement produces
+\eqref{eq:I-expansion}, including every trivial zero.  Finally, an exact
+packet-transform zero set and Conrey's theorem produce visible nonreal poles;
+Landau's theorem then rules out either eventual sign.

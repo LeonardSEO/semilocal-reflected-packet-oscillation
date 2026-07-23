@@ -1,0 +1,157 @@
+\section{Frozen packet and semilocal normalization}
+\label{sec:packet}
+
+\subsection{Transform and polarization conventions}
+
+The inner product on \(L^2(\R,dx)\) is antilinear in the first variable:
+\[
+\langle\Phi,\Psi\rangle
+=\int_{\R}\overline{\Phi(x)}\Psi(x)\,dx.
+\]
+Our Fourier transform and inverse normalization are
+\[
+\widehat\Phi(z)=\int_{\R}\Phi(x)e^{-izx}\,dx,
+\qquad
+\langle\Phi,\Psi\rangle
+=\frac{1}{2\pi}\int_{\R}
+\overline{\widehat\Phi(t)}\widehat\Psi(t)\,dt.
+\]
+Translation \(T_y\Phi(x)=\Phi(x-y)\) obeys
+\[
+\widehat{T_y\Phi}(t)=e^{-iyt}\widehat\Phi(t).
+\]
+For multiplicative tests we use
+\[
+\widetilde f(s)=\int_0^\infty f(u)u^{s-1}\,du.
+\]
+
+For \(\Phi,\Psi\in C_c^\infty(\R)\), define
+\[
+C_{\Phi,\Psi}(r)
+=\int_{\R}\overline{\Phi(x-r)}\Psi(x)\,dx.
+\]
+
+\subsection{Complete semilocal Weil preform}
+
+The source normalization reconstructed from
+\cite{ConnesConsani2023,CCM2025} is
+\begin{align}
+\qform(\Phi,\Psi)
+={}&
+\frac{1}{2\pi}\int_{\R}
+m_\infty(t)\,
+\overline{\widehat\Phi(t)}\widehat\Psi(t)\,dt
+\notag\\
+&+
+\overline{\widehat\Phi(-i/2)}\widehat\Psi(i/2)
++
+\overline{\widehat\Phi(i/2)}\widehat\Psi(-i/2)
+\notag\\
+&-
+\sum_{\substack{p\ {\rm prime}\\m\ge1}}
+\frac{\log p}{p^{m/2}}
+\left\{
+C_{\Phi,\Psi}(m\log p)
++
+C_{\Phi,\Psi}(-m\log p)
+\right\},
+\label{eq:preform}
+\end{align}
+where
+\[
+m_\infty(t)
+=
+\Re\frac{\Gamma'}{\Gamma}
+\left(\frac14+\frac{it}{2}\right)-\log\pi.
+\]
+Every prime power \(p^m\), rather than only every prime, appears with exact
+coefficient
+\[
+-(\log p)p^{-m/2}
+=-\Lambda(p^m)(p^m)^{-1/2}.
+\]
+For a finite semilocal interval \([-\log\lambda,\log\lambda]\), the cutoff is
+\[
+p^m\le\lambda^2.
+\]
+The endpoint is inclusive and carries no half weight.
+
+The equivalent real-place distribution is
+\begin{align}
+W_{\R}(C)
+={}&
+(\log 4\pi+\gamma_E)C(0)
+\notag\\
+&+
+\int_0^\infty
+\frac{
+e^{r/2}\{C(r)+C(-r)\}-2C(0)
+}{
+e^r-e^{-r}
+}\,dr,
+\label{eq:real-place}
+\end{align}
+and the archimedean contribution to \eqref{eq:preform} is
+\(-W_{\R}\).  This fixes the scalar, subtraction, and sign.
+
+\subsection{The dyadic infinite-convolution packet}
+
+For \(a_n=2^{-n-1}\), \(n\ge1\), put
+\[
+b_{a_n}(x)=\frac{1}{2a_n}\mathbf1_{[-a_n,a_n]}(x)
+\]
+and define
+\[
+g=*_{n\ge1}b_{a_n},\qquad
+h=\frac{g}{c_g},\qquad c_g=\lVert g\rVert_2.
+\]
+Since \(\sum_{n\ge1}a_n=1/2\), the infinite convolution is the density
+of an absolutely convergent sum of independent compactly supported random
+variables.  Moreover
+\[
+g\in C_c^\infty(\R),\qquad
+\supp g=[-1/2,1/2],
+\]
+and \(g\) is real, even, nonnegative, and strictly positive in the
+interior.  Smoothness follows from the super-polynomial Fourier decay
+obtained by bounding any fixed number of sinc factors.
+
+The transform is
+\[
+\widehat h(z)
+=c_g^{-1}
+\prod_{n\ge1}\frac{\sin(a_nz)}{a_nz}.
+\]
+The product converges locally uniformly, and
+\[
+Z(\widehat h)=4\pi\Z\setminus\{0\}.
+\]
+
+Because \(h\) is even,
+\[
+K_h(r)=\int_\R h(x-r)h(x)\,dx=(h*h)(r).
+\]
+It is real, even, nonnegative, smooth, supported exactly on \([-1,1]\),
+positive on \((-1,1)\), and \(K_h(0)=1\).  Its bilateral Laplace transform
+is
+\begin{equation}
+\Lh(w)
+=c_g^{-2}
+\prod_{n\ge1}
+\left(\frac{\sinh(a_nw)}{a_nw}\right)^2.
+\label{eq:L-product}
+\end{equation}
+This is entire and even.  Since
+\[
+\frac{\sinh(a_nw)}{a_nw}=1+O(a_n^2)
+\]
+uniformly on compact \(w\)-sets and \(\sum a_n^2<\infty\), the infinite
+tail has no extra zeros.  Hence
+\begin{equation}
+Z(\Lh)=4\pi i\Z\setminus\{0\}.
+\label{eq:L-zero-set}
+\end{equation}
+At \(4\pi i k\ne0\), the multiplicity is
+\[
+2\bigl(v_2(|k|)+1\bigr).
+\]

@@ -1,0 +1,43 @@
+name: Certificate regeneration
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install pinned numerical dependencies
+        run: python -m pip install --requirement requirements.txt
+
+      - name: Regenerate exact-rational certificate
+        run: python code/implementation_a/certify_y_half.py
+
+      - name: Regenerate implementation B
+        run: |
+          python code/implementation_b/explicit_formula_b.py
+          python code/implementation_b/certify_coefficients_arb.py
+          python code/implementation_b/verify_outputs.py
+
+      - name: Validate all retained prime powers
+        run: python -m unittest tests.test_repository_invariants -v
+
+      - name: Require regenerated certified files to match
+        run: |
+          git diff --exit-code -- \
+            certificates/implementation_a/certificate_y_half.json \
+            certificates/implementation_b/coefficient_certificates_arb.json

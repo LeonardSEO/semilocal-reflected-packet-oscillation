@@ -1,0 +1,46 @@
+{
+  "bits": 220,
+  "implementation": "numerical_b_python_flint_arb",
+  "records": [
+    {
+      "certified_nonzero": true,
+      "coefficient_ball": "[0.002 +/- 7.36e-4]",
+      "coefficient_imag_ball": "0",
+      "coefficient_real_lower": "[0.0012641202420794676499789014265230591022015261509729471079964315427 +/- 4.76e-68]",
+      "coefficient_real_upper": "[0.0025282404995536004634921803877046997272015261509729471079964315427 +/- 4.64e-68]",
+      "finite_product_ball": "[0.002528240494422045415065725410261272126829449758519584864449868736 +/- 7.51e-67]",
+      "index": 1,
+      "normalization_factor_ball": "[+/- 1.01]",
+      "proof_scope": "includes the infinite product tail and coarse positive normalization; no claim about the infinite zero-sum tail",
+      "rho_ball": "0.50000000000000000000000000000000000000000000000000000000000000000 + [14.134725141734693790457251983562470270784257115699243175685567460 +/- 1.56e-64]j",
+      "tail_factor_ball": "[1.0000000000000000 +/- 4.82e-18]"
+    },
+    {
+      "certified_nonzero": true,
+      "coefficient_ball": "[+/- 4.15e-4]",
+      "coefficient_imag_ball": "0",
+      "coefficient_real_lower": "[0.00020716862014686984386292720820000356761899292643412657804681081942 +/- 4.30e-69]",
+      "coefficient_real_upper": "[0.00041433724278412472832945610071709341136899292643412657804681081942 +/- 4.30e-69]",
+      "finite_product_ball": "[0.000414337241953996383667415809327222133920433554866862279192989712 +/- 1.48e-67]",
+      "index": 2,
+      "normalization_factor_ball": "[+/- 1.01]",
+      "proof_scope": "includes the infinite product tail and coarse positive normalization; no claim about the infinite zero-sum tail",
+      "rho_ball": "0.50000000000000000000000000000000000000000000000000000000000000000 + [21.022039638771554992628479593896902777334340524902781754629520404 +/- 4.47e-64]j",
+      "tail_factor_ball": "[1.000000000000000 +/- 1.07e-17]"
+    },
+    {
+      "certified_nonzero": true,
+      "coefficient_ball": "[+/- 6.95e-5]",
+      "coefficient_imag_ball": "0",
+      "coefficient_real_lower": "[3.4724693138451029931445390438364161684272185276779860227197464297e-5 +/- 1.60e-70]",
+      "coefficient_real_upper": "[6.9449386786964523758058220600412501528022185276779860227197464297e-5 +/- 1.96e-70]",
+      "finite_product_ball": "[6.94493866169437032341198432492833586678707129461124781570535621e-5 +/- 2.84e-68]",
+      "index": 4,
+      "normalization_factor_ball": "[+/- 1.01]",
+      "proof_scope": "includes the infinite product tail and coarse positive normalization; no claim about the infinite zero-sum tail",
+      "rho_ball": "0.50000000000000000000000000000000000000000000000000000000000000000 + [30.424876125859513210311897530584091320181560023715440180962146037 +/- 3.86e-65]j",
+      "tail_factor_ball": "[1.000000000000000 +/- 2.24e-17]"
+    }
+  ],
+  "terms": 30
+}

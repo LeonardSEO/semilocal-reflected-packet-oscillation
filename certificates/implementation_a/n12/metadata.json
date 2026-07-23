@@ -1,0 +1,18 @@
+{
+  "implementation": "numerical_a/direct_interaction.py",
+  "decimal_precision": 70,
+  "finite_uniform_factors": 12,
+  "omitted_autocorrelation_tail_support_radius": "2.441406250000000000000000000000E-4",
+  "packet_formula": "g_N is the convolution of b_{2^(-n-1)}, 1<=n<=N; G_N=g_N*g_N is evaluated by the exact nonuniform B-spline finite-difference formula",
+  "endpoint_convention": "all p^m with |2y-log(p^m)|<1 are included; equality is excluded because K_h(+-1)=0 and has no half weight",
+  "prime_power_model": "every p^m, coefficient log(p)/sqrt(p^m)",
+  "M_h_squared": {
+    "M_h_squared_central": "6.2244938833561396858697295492790909441401E-1",
+    "M_h_squared_low": "6.2244938807796900557444785123488474108317E-1",
+    "M_h_squared_high": "6.2244968514268219214039177024234217961618E-1"
+  },
+  "G_N_0": "1.6177471147916056952043872972382766411270E+0",
+  "G_N_epsilon": "1.6177463433898527031803474601795518997090E+0",
+  "archimedean_method": "real-place integral with Gauss-Legendre orders 64 and 128",
+  "certification_note": "Decimal values track analytic omitted-tail bounds but Decimal rounding and Gauss quadrature are diagnostic.  The companion exact-rational certificate is certificate_y_half.json."
+}
