@@ -4,6 +4,7 @@
 [![Python tests](https://github.com/LeonardSEO/semilocal-reflected-packet-oscillation/actions/workflows/python-tests.yml/badge.svg)](https://github.com/LeonardSEO/semilocal-reflected-packet-oscillation/actions/workflows/python-tests.yml)
 [![Certificates](https://github.com/LeonardSEO/semilocal-reflected-packet-oscillation/actions/workflows/certificates.yml/badge.svg)](https://github.com/LeonardSEO/semilocal-reflected-packet-oscillation/actions/workflows/certificates.yml)
 [![Checksums](https://github.com/LeonardSEO/semilocal-reflected-packet-oscillation/actions/workflows/checksums.yml/badge.svg)](https://github.com/LeonardSEO/semilocal-reflected-packet-oscillation/actions/workflows/checksums.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21512462.svg)](https://doi.org/10.5281/zenodo.21512462)
 
 This repository contains a standalone proof and reproducibility package for
 the reflected-packet oscillation theorem in the complete semilocal Weil
@@ -123,20 +124,74 @@ This finite value is not used to prove infinite oscillation.
 
 See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for exact commands.
 
-## Zenodo deposit
+## Zenodo publication
 
-The paper is prepared for a manual Zenodo **Publication / Preprint** deposit.
-See [ZENODO.md](ZENODO.md) for the exact metadata, files, licensing, DOI, and
-post-publication checklist.
+Published as an open preprint on 23 July 2026:
 
-The primary upload is:
+**Reflected-Packet Interactions in the Semilocal Weil Form: An Exact Zero
+Expansion and Unconditional Infinite Oscillation**
 
-`dist/semilocal-reflected-packet-oscillation-paper-v1.0.0.pdf`
+- Author: Leonard van Hemert
+- Version: 1.0.0
+- Version DOI: [10.5281/zenodo.21512462](https://doi.org/10.5281/zenodo.21512462)
+- Concept DOI for all versions:
+  [10.5281/zenodo.21512461](https://doi.org/10.5281/zenodo.21512461)
+- Resource type: Preprint
+- Publisher: Zenodo
+- Language: English
+- Rights: No license granted; all rights reserved
+- Copyright: Copyright (C) 2026 The Authors.
 
-The LaTeX source, reproducibility archive, and upload checksum manifest are
-supplementary files. Do not use Zenodo's GitHub integration for this record:
-that integration creates a Software record. No DOI is written into this
-repository before Zenodo assigns it.
+### Abstract
+
+We freeze one explicit real, even, compactly supported smooth packet and
+compute the interaction of two widely separated reflected translates in the
+complete semilocal Weil preform. The pole and all-prime-power sectors combine
+into a Stieltjes pairing against the Chebyshev-error distribution. Its
+canonical bilateral Laplace transform is expressed through the logarithmic
+derivative of the Riemann zeta function together with the required pole
+subtraction.
+
+A rigorous contour displacement gives an absolutely convergent expansion over
+all nontrivial and trivial zeros. The archimedean term and the remaining pole
+term cancel the complete trivial-zero series, leaving an exact zero-only
+expansion for the full reflected cross interaction.
+
+The frozen packet coefficient vanishes exactly on an explicitly determined
+imaginary lattice. Conrey's unconditional positive-proportion theorem
+supplies infinitely many visible critical-line poles. A Laplace-transform
+version of Landau's theorem then excludes either eventual sign. Consequently,
+both the arithmetic interaction and the even-minus-odd energy splitting take
+positive and negative values arbitrarily far to the right.
+
+This is not a proof of the Riemann hypothesis. It is a fixed-packet theorem.
+It does not identify, approximate, or determine the parity of an actual
+semilocal ground state. The numerical computations supplied with the paper
+are diagnostics only and are not premises of the analytic proof.
+
+The deposit includes the paper PDF, complete LaTeX sources, the frozen
+mathematical specification, independent audit records, two numerical
+implementations, all retained prime-power data, finite certificates, tests,
+and reproducibility instructions.
+
+### Deposited files
+
+- `semilocal-reflected-packet-oscillation-paper-v1.0.0.pdf`
+- `semilocal-reflected-packet-oscillation-paper-v1.0.0-sources.tar.gz`
+- `semilocal-reflected-packet-oscillation-paper-v1.0.0-reproducibility.tar.gz`
+- `ZENODO_UPLOAD_SHA256SUMS`
+
+The Zenodo record is supplemented by this repository. Keywords: Weil explicit
+formula; Riemann zeta function; prime powers; oscillation theorem; analytic
+number theory; spectral theory; Mellin transform; Laplace transform; and
+reproducible mathematics.
+
+### Citation
+
+> Leonard van Hemert. (2026). *Reflected-Packet Interactions in the Semilocal
+> Weil Form: An Exact Zero Expansion and Unconditional Infinite Oscillation*
+> (Version 1.0.0). Zenodo.
+> https://doi.org/10.5281/zenodo.21512462
 
 ## Licensing
 
