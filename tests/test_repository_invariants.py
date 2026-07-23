@@ -8,6 +8,7 @@ import math
 from pathlib import Path
 import re
 import unittest
+import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,6 +54,41 @@ class RepositoryInvariantTests(unittest.TestCase):
             "did not contain an explicit licensing policy",
             " ".join(notice.split()),
         )
+
+    def test_zenodo_handoff_is_explicit_and_non_circular(self) -> None:
+        citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
+        instructions = (ROOT / "ZENODO.md").read_text(encoding="utf-8")
+        normalized = " ".join(instructions.split())
+        self.assertIn("version: 1.0.2", citation)
+        self.assertIn("Resource type: Software", instructions)
+        self.assertIn("No existing DOI", instructions)
+        self.assertIn("Do not leave Zenodo's default CC-BY", normalized)
+        self.assertIn("unchanged paper version `1.0.0`", normalized)
+        self.assertFalse((ROOT / ".zenodo.json").exists())
+
+    def test_zenodo_bundle_contains_required_material(self) -> None:
+        bundle = (
+            ROOT
+            / "dist"
+            / "semilocal-reflected-packet-oscillation-v1.0.2-zenodo.zip"
+        )
+        if not bundle.exists():
+            self.skipTest("release builder has not been run")
+        with zipfile.ZipFile(bundle) as archive:
+            names = set(archive.namelist())
+        prefix = "semilocal-reflected-packet-oscillation-v1.0.2/"
+        for relative in (
+            "README.md",
+            "REPRODUCIBILITY.md",
+            "ZENODO.md",
+            "CITATION.cff",
+            "NOTICE",
+            "paper/main.pdf",
+            "paper/main.tex",
+            "tests/test_repository_invariants.py",
+            "ZENODO_SHA256SUMS",
+        ):
+            self.assertIn(prefix + relative, names)
 
     def test_implementation_a_records_all_valid_prime_powers(self) -> None:
         for path in sorted(

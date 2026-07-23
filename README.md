@@ -123,6 +123,18 @@ This finite value is not used to prove infinite oscillation.
 
 See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for exact commands.
 
+## Zenodo deposit
+
+The repository is prepared for either Zenodo's GitHub integration or a manual
+software deposit. See [ZENODO.md](ZENODO.md) for the exact metadata, file,
+licensing, DOI, and post-publication checklist.
+
+For a manual deposit, upload only:
+
+`dist/semilocal-reflected-packet-oscillation-v1.0.2-zenodo.zip`
+
+No DOI is written into this repository before Zenodo assigns it.
+
 ## Licensing
 
 The source research files contained no explicit licensing policy. No

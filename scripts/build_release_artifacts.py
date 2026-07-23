@@ -8,11 +8,12 @@ import hashlib
 import io
 from pathlib import Path
 import tarfile
+import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
-VERSION = "v1.0.1"
+VERSION = "v1.0.2"
 PREFIX = f"semilocal-reflected-packet-oscillation-{VERSION}"
 
 
@@ -63,6 +64,47 @@ def archive(name: str, files: list[Path]) -> Path:
     return destination
 
 
+def zenodo_archive(name: str, files: list[Path]) -> Path:
+    destination = DIST / name
+    internal_manifest = "\n".join(
+        f"{sha256(path)}  {path.relative_to(ROOT).as_posix()}"
+        for path in files
+    ) + "\n"
+
+    with zipfile.ZipFile(
+        destination,
+        mode="w",
+        compression=zipfile.ZIP_DEFLATED,
+        compresslevel=9,
+    ) as bundle:
+        for path in files:
+            relative = path.relative_to(ROOT).as_posix()
+            info = zipfile.ZipInfo(
+                filename=f"{PREFIX}/{relative}",
+                date_time=(1980, 1, 1, 0, 0, 0),
+            )
+            info.create_system = 3
+            info.compress_type = zipfile.ZIP_DEFLATED
+            info.external_attr = (
+                (0o100755 if path.suffix == ".py" else 0o100644) << 16
+            )
+            bundle.writestr(info, path.read_bytes(), compresslevel=9)
+
+        manifest_info = zipfile.ZipInfo(
+            filename=f"{PREFIX}/ZENODO_SHA256SUMS",
+            date_time=(1980, 1, 1, 0, 0, 0),
+        )
+        manifest_info.create_system = 3
+        manifest_info.compress_type = zipfile.ZIP_DEFLATED
+        manifest_info.external_attr = 0o100644 << 16
+        bundle.writestr(
+            manifest_info,
+            internal_manifest.encode("utf-8"),
+            compresslevel=9,
+        )
+    return destination
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -90,6 +132,7 @@ def main() -> None:
         [
             ROOT / "README.md",
             ROOT / "REPRODUCIBILITY.md",
+            ROOT / "ZENODO.md",
             ROOT / "CITATION.cff",
             ROOT / "NOTICE",
             ROOT / "requirements.txt",
@@ -97,6 +140,24 @@ def main() -> None:
             ROOT / ".github",
             ROOT / "paper" / "main.tex",
             ROOT / "paper" / "sections",
+            ROOT / "research",
+            ROOT / "code",
+            ROOT / "tests",
+            ROOT / "certificates",
+            ROOT / "scripts",
+        ]
+    )
+    zenodo_files = regular_files(
+        [
+            ROOT / "README.md",
+            ROOT / "REPRODUCIBILITY.md",
+            ROOT / "ZENODO.md",
+            ROOT / "CITATION.cff",
+            ROOT / "NOTICE",
+            ROOT / "requirements.txt",
+            ROOT / ".gitignore",
+            ROOT / ".github",
+            ROOT / "paper",
             ROOT / "research",
             ROOT / "code",
             ROOT / "tests",
@@ -112,12 +173,14 @@ def main() -> None:
             code_certificate_files,
         ),
         archive(f"{PREFIX}-source.tar.gz", full_source_files),
+        zenodo_archive(f"{PREFIX}-zenodo.zip", zenodo_files),
     ]
 
     manifest_paths = regular_files(
         [
             ROOT / "README.md",
             ROOT / "REPRODUCIBILITY.md",
+            ROOT / "ZENODO.md",
             ROOT / "CITATION.cff",
             ROOT / "NOTICE",
             ROOT / "requirements.txt",

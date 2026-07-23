@@ -32,5 +32,6 @@ jobs:
           path: |
             paper/main.pdf
             dist/*.tar.gz
+            dist/*-zenodo.zip
             SHA256SUMS
           if-no-files-found: error

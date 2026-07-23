@@ -102,14 +102,20 @@ python3 scripts/build_release_artifacts.py
 
 This creates:
 
-- `dist/semilocal-reflected-packet-oscillation-v1.0.1-latex-source.tar.gz`
-- `dist/semilocal-reflected-packet-oscillation-v1.0.1-code-certificates.tar.gz`
-- `dist/semilocal-reflected-packet-oscillation-v1.0.1-source.tar.gz`
+- `dist/semilocal-reflected-packet-oscillation-v1.0.2-latex-source.tar.gz`
+- `dist/semilocal-reflected-packet-oscillation-v1.0.2-code-certificates.tar.gz`
+- `dist/semilocal-reflected-packet-oscillation-v1.0.2-source.tar.gz`
+- `dist/semilocal-reflected-packet-oscillation-v1.0.2-zenodo.zip`
 - `SHA256SUMS`
 
 Archive entries have fixed timestamps, ownership metadata, ordering, and
 permissions. Re-running the script without changing source files produces
 identical archive hashes.
+
+The Zenodo ZIP is the single-file manual software deposit. It contains the
+paper PDF, LaTeX sources, research record, code, tests, certificates, metadata,
+and an internal `ZENODO_SHA256SUMS` manifest. Follow [ZENODO.md](ZENODO.md)
+before publishing the immutable Zenodo record.
 
 ## 7. Verify hashes
 
