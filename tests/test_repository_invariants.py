@@ -7,8 +7,8 @@ import json
 import math
 from pathlib import Path
 import re
+import tarfile
 import unittest
-import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -55,40 +55,48 @@ class RepositoryInvariantTests(unittest.TestCase):
             " ".join(notice.split()),
         )
 
-    def test_zenodo_handoff_is_explicit_and_non_circular(self) -> None:
+    def test_zenodo_handoff_is_a_paper_deposit(self) -> None:
         citation = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
         instructions = (ROOT / "ZENODO.md").read_text(encoding="utf-8")
         normalized = " ".join(instructions.split())
         self.assertIn("version: 1.0.2", citation)
-        self.assertIn("Resource type: Software", instructions)
+        self.assertIn("preferred-citation:", citation)
+        self.assertIn("type: article", citation)
+        self.assertIn("Resource type: Publication", instructions)
+        self.assertIn("Subtype: Preprint", instructions)
         self.assertIn("No existing DOI", instructions)
         self.assertIn("Do not leave Zenodo's default CC-BY", normalized)
-        self.assertIn("unchanged paper version `1.0.0`", normalized)
+        self.assertIn("Do not use Zenodo's GitHub integration", normalized)
         self.assertFalse((ROOT / ".zenodo.json").exists())
 
-    def test_zenodo_bundle_contains_required_material(self) -> None:
-        bundle = (
-            ROOT
-            / "dist"
-            / "semilocal-reflected-packet-oscillation-v1.0.2-zenodo.zip"
+    def test_zenodo_paper_assets_contain_required_material(self) -> None:
+        prefix = "semilocal-reflected-packet-oscillation-paper-v1.0.0"
+        pdf = ROOT / "dist" / f"{prefix}.pdf"
+        sources = ROOT / "dist" / f"{prefix}-sources.tar.gz"
+        reproducibility = (
+            ROOT / "dist" / f"{prefix}-reproducibility.tar.gz"
         )
-        if not bundle.exists():
+        manifest = ROOT / "ZENODO_UPLOAD_SHA256SUMS"
+        if not all(path.exists() for path in (pdf, sources, reproducibility)):
             self.skipTest("release builder has not been run")
-        with zipfile.ZipFile(bundle) as archive:
-            names = set(archive.namelist())
-        prefix = "semilocal-reflected-packet-oscillation-v1.0.2/"
+        self.assertEqual(pdf.read_bytes(), (ROOT / "paper/main.pdf").read_bytes())
+        with tarfile.open(sources, "r:gz") as archive:
+            source_names = set(archive.getnames())
+        with tarfile.open(reproducibility, "r:gz") as archive:
+            reproducibility_names = set(archive.getnames())
+        self.assertIn(f"{prefix}/paper/main.tex", source_names)
+        self.assertIn(f"{prefix}/paper/sections/05_oscillation.tex", source_names)
         for relative in (
             "README.md",
             "REPRODUCIBILITY.md",
             "ZENODO.md",
             "CITATION.cff",
             "NOTICE",
-            "paper/main.pdf",
-            "paper/main.tex",
             "tests/test_repository_invariants.py",
-            "ZENODO_SHA256SUMS",
+            "certificates/implementation_a/certificate_y_half.json",
         ):
-            self.assertIn(prefix + relative, names)
+            self.assertIn(f"{prefix}/{relative}", reproducibility_names)
+        self.assertEqual(len(manifest.read_text(encoding="utf-8").splitlines()), 3)
 
     def test_implementation_a_records_all_valid_prime_powers(self) -> None:
         for path in sorted(

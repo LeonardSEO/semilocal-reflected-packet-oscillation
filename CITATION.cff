@@ -19,3 +19,12 @@ abstract: >-
   and unconditional infinite sign changes of one fixed reflected-packet
   interaction in the complete semilocal Weil preform. This is not a proof of
   the Riemann hypothesis and does not determine actual ground-state parity.
+preferred-citation:
+  type: article
+  title: >-
+    Reflected-Packet Interactions in the Semilocal Weil Form: An Exact Zero
+    Expansion and Unconditional Infinite Oscillation
+  version: 1.0.0
+  year: 2026
+  authors:
+    - name: "LeonardSEO"

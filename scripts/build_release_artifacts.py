@@ -8,13 +8,16 @@ import hashlib
 import io
 from pathlib import Path
 import tarfile
-import zipfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 VERSION = "v1.0.2"
 PREFIX = f"semilocal-reflected-packet-oscillation-{VERSION}"
+PAPER_VERSION = "v1.0.0"
+PAPER_PREFIX = (
+    f"semilocal-reflected-packet-oscillation-paper-{PAPER_VERSION}"
+)
 
 
 def regular_files(paths: list[Path]) -> list[Path]:
@@ -34,7 +37,7 @@ def regular_files(paths: list[Path]) -> list[Path]:
     return sorted(files, key=lambda item: item.relative_to(ROOT).as_posix())
 
 
-def archive(name: str, files: list[Path]) -> Path:
+def archive(name: str, files: list[Path], prefix: str = PREFIX) -> Path:
     destination = DIST / name
     tar_buffer = io.BytesIO()
     with tarfile.open(fileobj=tar_buffer, mode="w", format=tarfile.PAX_FORMAT) as tar:
@@ -42,7 +45,7 @@ def archive(name: str, files: list[Path]) -> Path:
             relative = path.relative_to(ROOT)
             data = path.read_bytes()
             info = tarfile.TarInfo(
-                name=f"{PREFIX}/{relative.as_posix()}"
+                name=f"{prefix}/{relative.as_posix()}"
             )
             info.size = len(data)
             info.mtime = 0
@@ -61,47 +64,6 @@ def archive(name: str, files: list[Path]) -> Path:
             compresslevel=9,
         ) as compressed:
             compressed.write(tar_buffer.getvalue())
-    return destination
-
-
-def zenodo_archive(name: str, files: list[Path]) -> Path:
-    destination = DIST / name
-    internal_manifest = "\n".join(
-        f"{sha256(path)}  {path.relative_to(ROOT).as_posix()}"
-        for path in files
-    ) + "\n"
-
-    with zipfile.ZipFile(
-        destination,
-        mode="w",
-        compression=zipfile.ZIP_DEFLATED,
-        compresslevel=9,
-    ) as bundle:
-        for path in files:
-            relative = path.relative_to(ROOT).as_posix()
-            info = zipfile.ZipInfo(
-                filename=f"{PREFIX}/{relative}",
-                date_time=(1980, 1, 1, 0, 0, 0),
-            )
-            info.create_system = 3
-            info.compress_type = zipfile.ZIP_DEFLATED
-            info.external_attr = (
-                (0o100755 if path.suffix == ".py" else 0o100644) << 16
-            )
-            bundle.writestr(info, path.read_bytes(), compresslevel=9)
-
-        manifest_info = zipfile.ZipInfo(
-            filename=f"{PREFIX}/ZENODO_SHA256SUMS",
-            date_time=(1980, 1, 1, 0, 0, 0),
-        )
-        manifest_info.create_system = 3
-        manifest_info.compress_type = zipfile.ZIP_DEFLATED
-        manifest_info.external_attr = 0o100644 << 16
-        bundle.writestr(
-            manifest_info,
-            internal_manifest.encode("utf-8"),
-            compresslevel=9,
-        )
     return destination
 
 
@@ -147,7 +109,7 @@ def main() -> None:
             ROOT / "scripts",
         ]
     )
-    zenodo_files = regular_files(
+    paper_reproducibility_files = regular_files(
         [
             ROOT / "README.md",
             ROOT / "REPRODUCIBILITY.md",
@@ -157,7 +119,6 @@ def main() -> None:
             ROOT / "requirements.txt",
             ROOT / ".gitignore",
             ROOT / ".github",
-            ROOT / "paper",
             ROOT / "research",
             ROOT / "code",
             ROOT / "tests",
@@ -173,14 +134,39 @@ def main() -> None:
             code_certificate_files,
         ),
         archive(f"{PREFIX}-source.tar.gz", full_source_files),
-        zenodo_archive(f"{PREFIX}-zenodo.zip", zenodo_files),
     ]
+    paper_pdf = DIST / f"{PAPER_PREFIX}.pdf"
+    paper_pdf.write_bytes((ROOT / "paper" / "main.pdf").read_bytes())
+    zenodo_assets = [
+        paper_pdf,
+        archive(
+            f"{PAPER_PREFIX}-sources.tar.gz",
+            latex_files,
+            prefix=PAPER_PREFIX,
+        ),
+        archive(
+            f"{PAPER_PREFIX}-reproducibility.tar.gz",
+            paper_reproducibility_files,
+            prefix=PAPER_PREFIX,
+        ),
+    ]
+    zenodo_manifest = ROOT / "ZENODO_UPLOAD_SHA256SUMS"
+    zenodo_manifest.write_text(
+        "\n".join(
+            f"{sha256(path)}  {path.name}" for path in zenodo_assets
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    zenodo_assets.append(zenodo_manifest)
+    release_assets.extend(zenodo_assets)
 
     manifest_paths = regular_files(
         [
             ROOT / "README.md",
             ROOT / "REPRODUCIBILITY.md",
             ROOT / "ZENODO.md",
+            ROOT / "ZENODO_UPLOAD_SHA256SUMS",
             ROOT / "CITATION.cff",
             ROOT / "NOTICE",
             ROOT / "requirements.txt",

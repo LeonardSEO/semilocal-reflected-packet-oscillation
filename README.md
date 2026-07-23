@@ -125,15 +125,18 @@ See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for exact commands.
 
 ## Zenodo deposit
 
-The repository is prepared for either Zenodo's GitHub integration or a manual
-software deposit. See [ZENODO.md](ZENODO.md) for the exact metadata, file,
-licensing, DOI, and post-publication checklist.
+The paper is prepared for a manual Zenodo **Publication / Preprint** deposit.
+See [ZENODO.md](ZENODO.md) for the exact metadata, files, licensing, DOI, and
+post-publication checklist.
 
-For a manual deposit, upload only:
+The primary upload is:
 
-`dist/semilocal-reflected-packet-oscillation-v1.0.2-zenodo.zip`
+`dist/semilocal-reflected-packet-oscillation-paper-v1.0.0.pdf`
 
-No DOI is written into this repository before Zenodo assigns it.
+The LaTeX source, reproducibility archive, and upload checksum manifest are
+supplementary files. Do not use Zenodo's GitHub integration for this record:
+that integration creates a Software record. No DOI is written into this
+repository before Zenodo assigns it.
 
 ## Licensing
 
