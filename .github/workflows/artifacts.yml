@@ -32,18 +32,5 @@ jobs:
           path: |
             paper/main.pdf
             dist/*.tar.gz
-            dist/*-paper-*.pdf
-            ZENODO_UPLOAD_SHA256SUMS
             SHA256SUMS
-          if-no-files-found: error
-
-      - name: Upload Zenodo paper deposit
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
-        with:
-          name: zenodo-paper-v1.0.0
-          path: |
-            dist/semilocal-reflected-packet-oscillation-paper-v1.0.0.pdf
-            dist/semilocal-reflected-packet-oscillation-paper-v1.0.0-sources.tar.gz
-            dist/semilocal-reflected-packet-oscillation-paper-v1.0.0-reproducibility.tar.gz
-            ZENODO_UPLOAD_SHA256SUMS
           if-no-files-found: error

@@ -105,20 +105,11 @@ This creates:
 - `dist/semilocal-reflected-packet-oscillation-v1.0.2-latex-source.tar.gz`
 - `dist/semilocal-reflected-packet-oscillation-v1.0.2-code-certificates.tar.gz`
 - `dist/semilocal-reflected-packet-oscillation-v1.0.2-source.tar.gz`
-- `dist/semilocal-reflected-packet-oscillation-paper-v1.0.0.pdf`
-- `dist/semilocal-reflected-packet-oscillation-paper-v1.0.0-sources.tar.gz`
-- `dist/semilocal-reflected-packet-oscillation-paper-v1.0.0-reproducibility.tar.gz`
-- `ZENODO_UPLOAD_SHA256SUMS`
 - `SHA256SUMS`
 
 Archive entries have fixed timestamps, ownership metadata, ordering, and
 permissions. Re-running the script without changing source files produces
 identical archive hashes.
-
-The PDF is the primary Zenodo Publication / Preprint object. The two archives
-are supplementary paper source and reproducibility files.
-`ZENODO_UPLOAD_SHA256SUMS` covers exactly the four files to upload. Follow
-[ZENODO.md](ZENODO.md) before publishing the immutable Zenodo record.
 
 ## 7. Verify hashes
 

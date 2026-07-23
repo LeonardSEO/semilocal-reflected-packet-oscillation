@@ -14,10 +14,6 @@ ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
 VERSION = "v1.0.2"
 PREFIX = f"semilocal-reflected-packet-oscillation-{VERSION}"
-PAPER_VERSION = "v1.0.0"
-PAPER_PREFIX = (
-    f"semilocal-reflected-packet-oscillation-paper-{PAPER_VERSION}"
-)
 
 
 def regular_files(paths: list[Path]) -> list[Path]:
@@ -37,7 +33,7 @@ def regular_files(paths: list[Path]) -> list[Path]:
     return sorted(files, key=lambda item: item.relative_to(ROOT).as_posix())
 
 
-def archive(name: str, files: list[Path], prefix: str = PREFIX) -> Path:
+def archive(name: str, files: list[Path]) -> Path:
     destination = DIST / name
     tar_buffer = io.BytesIO()
     with tarfile.open(fileobj=tar_buffer, mode="w", format=tarfile.PAX_FORMAT) as tar:
@@ -45,7 +41,7 @@ def archive(name: str, files: list[Path], prefix: str = PREFIX) -> Path:
             relative = path.relative_to(ROOT)
             data = path.read_bytes()
             info = tarfile.TarInfo(
-                name=f"{prefix}/{relative.as_posix()}"
+                name=f"{PREFIX}/{relative.as_posix()}"
             )
             info.size = len(data)
             info.mtime = 0
@@ -94,7 +90,6 @@ def main() -> None:
         [
             ROOT / "README.md",
             ROOT / "REPRODUCIBILITY.md",
-            ROOT / "ZENODO.md",
             ROOT / "CITATION.cff",
             ROOT / "NOTICE",
             ROOT / "requirements.txt",
@@ -109,24 +104,6 @@ def main() -> None:
             ROOT / "scripts",
         ]
     )
-    paper_reproducibility_files = regular_files(
-        [
-            ROOT / "README.md",
-            ROOT / "REPRODUCIBILITY.md",
-            ROOT / "ZENODO.md",
-            ROOT / "CITATION.cff",
-            ROOT / "NOTICE",
-            ROOT / "requirements.txt",
-            ROOT / ".gitignore",
-            ROOT / ".github",
-            ROOT / "research",
-            ROOT / "code",
-            ROOT / "tests",
-            ROOT / "certificates",
-            ROOT / "scripts",
-        ]
-    )
-
     release_assets = [
         archive(f"{PREFIX}-latex-source.tar.gz", latex_files),
         archive(
@@ -135,38 +112,11 @@ def main() -> None:
         ),
         archive(f"{PREFIX}-source.tar.gz", full_source_files),
     ]
-    paper_pdf = DIST / f"{PAPER_PREFIX}.pdf"
-    paper_pdf.write_bytes((ROOT / "paper" / "main.pdf").read_bytes())
-    zenodo_assets = [
-        paper_pdf,
-        archive(
-            f"{PAPER_PREFIX}-sources.tar.gz",
-            latex_files,
-            prefix=PAPER_PREFIX,
-        ),
-        archive(
-            f"{PAPER_PREFIX}-reproducibility.tar.gz",
-            paper_reproducibility_files,
-            prefix=PAPER_PREFIX,
-        ),
-    ]
-    zenodo_manifest = ROOT / "ZENODO_UPLOAD_SHA256SUMS"
-    zenodo_manifest.write_text(
-        "\n".join(
-            f"{sha256(path)}  {path.name}" for path in zenodo_assets
-        )
-        + "\n",
-        encoding="utf-8",
-    )
-    zenodo_assets.append(zenodo_manifest)
-    release_assets.extend(zenodo_assets)
 
     manifest_paths = regular_files(
         [
             ROOT / "README.md",
             ROOT / "REPRODUCIBILITY.md",
-            ROOT / "ZENODO.md",
-            ROOT / "ZENODO_UPLOAD_SHA256SUMS",
             ROOT / "CITATION.cff",
             ROOT / "NOTICE",
             ROOT / "requirements.txt",
