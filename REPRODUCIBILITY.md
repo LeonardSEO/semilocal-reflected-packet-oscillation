@@ -92,7 +92,7 @@ uv run --python 3.12 \
 ```
 
 This checks that every recorded arithmetic row satisfies
-\(p^m=n\), has \(m\ge1\), and lies in the strict packet support window.
+$p^m=n$, has $m\ge1$, and lies in the strict packet support window.
 
 ## 6. Build deterministic release archives
 
@@ -102,9 +102,9 @@ python3 scripts/build_release_artifacts.py
 
 This creates:
 
-- `dist/semilocal-reflected-packet-oscillation-v1.0.0-latex-source.tar.gz`
-- `dist/semilocal-reflected-packet-oscillation-v1.0.0-code-certificates.tar.gz`
-- `dist/semilocal-reflected-packet-oscillation-v1.0.0-source.tar.gz`
+- `dist/semilocal-reflected-packet-oscillation-v1.0.1-latex-source.tar.gz`
+- `dist/semilocal-reflected-packet-oscillation-v1.0.1-code-certificates.tar.gz`
+- `dist/semilocal-reflected-packet-oscillation-v1.0.1-source.tar.gz`
 - `SHA256SUMS`
 
 Archive entries have fixed timestamps, ownership metadata, ordering, and

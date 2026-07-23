@@ -6,6 +6,7 @@ import csv
 import json
 import math
 from pathlib import Path
+import re
 import unittest
 
 
@@ -25,6 +26,25 @@ class RepositoryInvariantTests(unittest.TestCase):
             self.assertIn(phrase, readme)
         self.assertIn("not a proof of the riemann hypothesis", paper)
         self.assertIn("fixed-packet theorem", paper)
+
+    def test_markdown_uses_github_math_delimiters(self) -> None:
+        unsupported = re.compile(r"^\\\[|^\\\]|\\\(|\\\)", re.MULTILINE)
+        markdown_files = sorted(ROOT.rglob("*.md"))
+        self.assertTrue(markdown_files)
+        for path in markdown_files:
+            text = path.read_text(encoding="utf-8")
+            self.assertIsNone(
+                unsupported.search(text),
+                f"{path.relative_to(ROOT)} uses non-GitHub math delimiters",
+            )
+            self.assertNotRegex(
+                text,
+                re.compile(r"^\s*\$\$\s*$", re.MULTILINE),
+                f"{path.relative_to(ROOT)} should use fenced math blocks",
+            )
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertGreaterEqual(readme.count("```math"), 7)
+        self.assertIn("$K_h=h*h$", readme)
 
     def test_no_invented_license_file(self) -> None:
         self.assertFalse((ROOT / "LICENSE").exists())

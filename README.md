@@ -22,30 +22,30 @@ preform.
 
 One explicit packet is frozen:
 
-\[
+```math
 a_n=2^{-n-1},\qquad
 g=*_{n\ge1}\frac{\mathbf 1_{[-a_n,a_n]}}{2a_n},
 \qquad
 h=\frac{g}{\|g\|_2}.
-\]
+```
 
-Let \(K_h=h*h\), and let
+Let $K_h=h*h$, and let
 
-\[
+```math
 dE=\sum_{n\ge2}\Lambda(n)\delta_n-dx.
-\]
+```
 
-For \(y>1/2\), define
+For $y>1/2$, define
 
-\[
+```math
 \mathcal I_h(y)=
 -\int_0^\infty
 x^{-1/2}K_h(2y-\log x)\,dE(x).
-\]
+```
 
 The exact explicit formula is
 
-\[
+```math
 \mathcal I_h(y)
 =
 \sum_\rho m_\rho
@@ -53,28 +53,28 @@ L_h(\rho-\tfrac12)e^{2(\rho-1/2)y}
 +
 \sum_{n\ge1}
 L_h(2n+\tfrac12)e^{-(4n+1)y}.
-\]
+```
 
 The archimedean and residual pole terms cancel the complete trivial-zero
 series. Therefore the full cross interaction is
 
-\[
+```math
 \mathfrak q(h_y^{\mathrm R},h_y^{\mathrm L})
 =
 \sum_\rho m_\rho
 L_h(\rho-\tfrac12)e^{2(\rho-1/2)y},
-\]
+```
 
 and exact polarization gives
 
-\[
+```math
 \Delta_h(y)
 =
 \mathfrak q[h_y^+]-\mathfrak q[h_y^-]
 =2\mathfrak q(h_y^{\mathrm R},h_y^{\mathrm L}).
-\]
+```
 
-Both \(\mathcal I_h\) and \(\Delta_h\) take positive and negative values
+Both $\mathcal I_h$ and $\Delta_h$ take positive and negative values
 arbitrarily far to the right. No RH, global zero-simplicity, or
 linear-independence assumption is used.
 
@@ -100,23 +100,23 @@ valid if `code/` and `certificates/` are deleted.
 The numerical implementations:
 
 - include every prime power in every finite support window;
-- preserve the coefficient \((\log p)p^{-m/2}\);
-- record the triple \((p,m,p^m)\);
+- preserve the coefficient $(\log p)p^{-m/2}$;
+- record the triple $(p,m,p^m)$;
 - use the strict interaction window
-  \(|2y-\log(p^m)|<1\); and
+  $|2y-\log(p^m)|<1$; and
 - treat all finite results as diagnostics.
 
-The exact-rational certificate at \(y=1/2\) proves
+The exact-rational certificate at $y=1/2$ proves
 
-\[
+```math
 0.063637725597
 <
 \mathcal I_h(1/2)
 <
 0.088006928482.
-\]
+```
 
-It includes exactly the prime powers \(2,3,4,5,7\) in \(1<p^m<e^2\).
+It includes exactly the prime powers $2,3,4,5,7$ in $1<p^m<e^2$.
 This finite value is not used to prove infinite oscillation.
 
 ## Reproduce

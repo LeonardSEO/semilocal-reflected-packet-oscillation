@@ -8,69 +8,69 @@ zeros of zeta and it does not use files from any earlier numerical route.
 
 ## What is computed
 
-`direct_interaction.py` constructs the first \(N\) factors of the frozen
+`direct_interaction.py` constructs the first $N$ factors of the frozen
 infinite convolution.  If
 
-\[
+```math
 g_N=*_{n=1}^{N}b_{2^{-n-1}},\qquad G_N=g_N*g_N,
-\]
+```
 
-then the code evaluates \(G_N\) from the exact nonuniform B-spline identity
+then the code evaluates $G_N$ from the exact nonuniform B-spline identity
 
-\[
+```math
 G_N(x)=
 \frac{2^{N(N+1)}}{(2N-1)!}
 \sum_{k_1,\ldots,k_N\in\{0,1,2\}}
 (-1)^{\sum k_i}\prod_i {2\choose k_i}
 \left(x+1-2^{-N}-\sum_i k_i2^{-i}\right)_+^{2N-1}.
-\]
+```
 
 The implementation aggregates the finite-difference coefficients and uses
 prefix moments, so a whole prime-power grid is evaluated in one pass.
 
 The two omitted packet tails give an omitted autocorrelation shift supported
-in \([-\varepsilon_N,\varepsilon_N]\), where
-\(\varepsilon_N=2^{-N}\).  Symmetry and log-concavity give
+in $[-\varepsilon_N,\varepsilon_N]$, where
+$\varepsilon_N=2^{-N}$.  Symmetry and log-concavity give
 
-\[
+```math
 G_N(|r|+\varepsilon_N)\le G(r)
 \le G_N(\max(|r|-\varepsilon_N,0))
-\]
+```
 
 and
 
-\[
+```math
 G_N(\varepsilon_N)\le G(0)\le G_N(0).
-\]
+```
 
 These inequalities produce the reported `K_tail_low/high` and
 `I_tail_low/high`.  The displayed values use 80-digit Decimal arithmetic;
 those bounds track the analytic truncation but are not called formal
 interval certificates because Decimal operations are not directed here.
 
-Every \(p^m\) in the strict support window
+Every $p^m$ in the strict support window
 
-\[
+```math
 |2y-\log(p^m)|<1
-\]
+```
 
-is included with coefficient \(\log(p)/\sqrt{p^m}\).  Equality is zero
-because \(K_h(\pm1)=0\), and no half weight is used.
+is included with coefficient $\log(p)/\sqrt{p^m}$.  Equality is zero
+because $K_h(\pm1)=0$, and no half weight is used.
 
 The default grid is
-\[
+```math
 y\in\{0.5,1,1.25,1.5,1.75,2,2.25,2.5,3,3.5,4\}.
-\]
+```
 The three quarter-offset values are shared with the independent
 `code/implementation_b` implementation.
 
 The archimedean cross term is computed independently from
 
-\[
+```math
 A_h(y)=-
 \int_{-1}^{1}
 \frac{e^{(2y-u)/2}}{e^{2y-u}-e^{-2y+u}}K_h(u)\,du .
-\]
+```
 
 Two Gauss-Legendre orders are compared.  Consequently `Delta_center` is a
 diagnostic, not a proof.
@@ -80,22 +80,22 @@ diagnostic, not a proof.
 No Arb or python-flint installation was present in the environment.  The
 companion `certify_y_half.py` therefore uses the stronger fallback of exact
 Python rational arithmetic.  It certifies one value of the *infinite*
-packet, not merely the \(N=8\) truncation:
+packet, not merely the $N=8$ truncation:
 
-\[
+```math
 \mathcal I_h(1/2)\in
 [0.063637725597,\;0.088006928482],
-\]
+```
 
-so \(\mathcal I_h(1/2)>0\).
+so $\mathcal I_h(1/2)>0$.
 
 The enclosure accounts for:
 
 - the full omitted infinite-convolution tail;
 - rigorous positive-series bounds for logarithms, exponentials, and
-  \(\sinh(x)/x\);
+  $\sinh(x)/x$;
 - dyadic rational square-root enclosures;
-- all prime powers in \(1<x<e^2\), namely \(2,3,4,5,7\);
+- all prime powers in $1<x<e^2$, namely $2,3,4,5,7$;
 - the full endpoint convention.
 
 The exact rational endpoints (including their full numerators and

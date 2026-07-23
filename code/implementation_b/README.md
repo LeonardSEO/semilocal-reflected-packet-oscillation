@@ -6,16 +6,16 @@ importing implementation A.
 It evaluates the same scalar interaction in two independent ways:
 
 1. `explicit_formula_b.py` builds every prime power in the strict logarithmic
-   support window and obtains \(K_h\) by vector Gauss--Kronrod inversion of
-   \(\prod_n\operatorname{sinc}(a_nt)^2\).
+   support window and obtains $K_h$ by vector Gauss--Kronrod inversion of
+   $\prod_n\operatorname{sinc}(a_nt)^2$.
 2. The same program obtains the explicit-formula diagnostic from zeta zeros
    and
-   \[
+   ```math
    {\cal L}K_h(w)=c_g^{-2}\prod_{n\ge1}
    \left(\frac{\sinh(a_nw)}{a_nw}\right)^2.
-   \]
+   ```
 3. `certify_coefficients_arb.py` uses Arb balls, an analytic infinite-product
-   tail enclosure, and \(1/2\le c_g^{-2}\le1\) to certify nonvanishing of
+   tail enclosure, and $1/2\le c_g^{-2}\le1$ to certify nonvanishing of
    selected coefficients.
 
 The direct and explicit values are diagnostics.  The program rigorously tracks

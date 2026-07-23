@@ -12,7 +12,7 @@ import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
 DIST = ROOT / "dist"
-VERSION = "v1.0.0"
+VERSION = "v1.0.1"
 PREFIX = f"semilocal-reflected-packet-oscillation-{VERSION}"
 
 
